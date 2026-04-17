@@ -9,17 +9,12 @@
 
 使用声明：⚠️此脚本仅供学习与交流，请在下载使用24小时内删除！请勿在中国大陆转载与贩卖！⚠️⚠️⚠️
 *******************************
-
 [Rewrite]
-# > 拦截广告追踪与部分数据上报
-^https?:\/\/mobile\.da\.mgtv\.com\/m\/page url reject
+^https?://mobile\.da\.mgtv\.com/m/page url reject
 
 [Script]
-# > 芒果TV 会员解锁与界面优化 (处理响应体)
-http-response ^https?:\/\/.*mgtv\.com.*(GetUserInfo|module\/list\?_support|app\/bdboot|pullReleaseInfo|floor\/detail|video\/source|entry\?_support).*$ script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/mgtv.js, requires-body=true, tag=芒果TV_会员解锁_界面优化
-
-# > 芒果TV 视频源处理 (处理请求)
-http-request ^https?:\/\/mobile-stream\.api\.mgtv\.com\/v1\/video\/source\? script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/mgtk.js, tag=芒果TV_视频源处理
+http-response ^https?:\/\/.*mgtv\.com.*(GetUserInfo|module\/list\?_support|app\/bdboot|pullReleaseInfo|floor\/detail|video\/source|entry\?_support).*$ script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/mgtv.js, requires-body=true, tag=芒果TV解锁会员+界面优化_响应处理
+http-request ^https?:\/\/mobile-stream\.api\.mgtv\.com\/v1\/video\/source\? script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/mgtk.js, tag=芒果TV解锁会员+界面优化_请求处理
 
 [MITM]
 hostname = %APPEND% *.mgtv.com, hb-boom.api.mgtv.com, *.api.mgtv.com, mobile-stream.api.mgtv.com, nuc.api.mgtv.com, 111.31.104.108, 111.31.104.*, 111.31.104.96, iphone.v0.mgtv.com, api.data.mgtv.com, *.*.mgtv.*
