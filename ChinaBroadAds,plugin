@@ -1,18 +1,11 @@
 #!name = 中国广电去广告[墨鱼版]
-#!desc = 去除中国广电APP开屏广告、底部菜单推广、导航菜单净化
+#!desc = 去除中国广电APP开屏广告
 #!author = @ddgksf2013
 #!homepage = https://t.me/ddgksf2021
 
 [Rewrite]
 # 开屏广告
-^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/version\/getFlashScreenPage url reject
-
-[Script]
-# 中部业务菜单净化（保留：导航栏|我的-特色|个人中心|客服）
-http-response ^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/content\/qryPosterStand script-content=var obj=JSON.parse($response.body);if(obj.data)obj.data=obj.data.filter(function(i){return/导航栏|我的-特色|个人中心|客服/.test(i.posterStandName)});$done({body:JSON.stringify(obj)});,requires-body=true,tag=广电_中部菜单净化
-
-# 导航菜单去视听
-http-response ^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/content\/qryNavigationMenuList script-content=var obj=JSON.parse($response.body);if(obj.data&&obj.data[0]&&obj.data[0].children)obj.data[0].children=obj.data[0].children.filter(function(i){return i.catalogName!=="视听"});$done({body:JSON.stringify(obj)});,requires-body=true,tag=广电_导航去视听
+^https?://app\.10099\.com\.cn/contact-web/api/version/getFlashScreenPage url reject-200
 
 [MITM]
 hostname = %APPEND% app.10099.com.cn
