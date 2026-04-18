@@ -7,6 +7,9 @@
 #!system_version=17
 #!loon_version=3.3.9(945)
 
+使用声明：⚠️此脚本仅供学习与交流，请在下载使用24小时内删除！请勿在中国大陆转载与贩卖！⚠️⚠️⚠️
+*******************************
+
 [Rewrite]
 # ======= 通用拦截 ======= #
 ^https?:\/\/(preload-click|preload-impression)\.uve\.weibo\.com\/(interface\/wbpullad\/wbpullad_click\.php|wbapplua\/get_wbpullad_log\.lua) url reject
