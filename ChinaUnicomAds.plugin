@@ -3,49 +3,23 @@
 #!author = @ddgksf2013
 #!icon = https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9c/28/84/9c28841b-4cff-4018-8f26-3de8ab01abf2/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg
 #!homepage = https://t.me/ddgksf2021
-#!date = 2025-12-11
-#!version = 1.0.4
 
 [Rule]
 DOMAIN-SUFFIX,ad.10010.com,REJECT
 
 [Rewrite]
-# 广告推送
-^https?:\/\/m\.client\.10010\.com\/mobileserviceimportant\/customer\/querySmartServicekhd.htm url reject-200
-# 新人专享
-^https?:\/\/m\.client\.10010\.com\/clientIndex\/api\/v1\/index\/queryIndexExclusiveOffers url reject-200
-# 首页瀑布流
-^https?:\/\/img\.client\.10010\.com\/homejingxuan12\/js\/(pubuliu|1homeView) url reject-200
-# 热搜词
-^https?:\/\/m\.client\.10010\.com\/search_service\/search\/searchScrollWord url script-response-body data:application/javascript,var obj=JSON.parse($response.body);if(obj["113000004"])obj["113000004"]=[];$done({body:JSON.stringify(obj)});
-# 首页底部ICON
-^https?:\/\/m\.client\.10010\.com\/clientIndex\/homefusion\/fuInter url script-response-body data:application/javascript,var obj=JSON.parse($response.body);if(obj["HomeFusion.backGroundQuery"])delete obj["HomeFusion.backGroundQuery"];if(obj["HomeFusion.bottomLabel"])delete obj["HomeFusion.bottomLabel"].bottomMallKey;$done({body:JSON.stringify(obj)});
-# 借钱
-^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myWallet url script-response-body data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});
-# 积分
-^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myPoints url script-response-body data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});
-# 彩铃
-^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myColorfulRingtone url script-response-body data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});
-# 横幅
-^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/newUserInfo url script-response-body data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});
-# 本地图片推广
-^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/getDeviceInfo url script-response-body data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});
+^https?:\/\/m\.client\.10010\.com\/mobileserviceimportant\/customer\/querySmartServicekhd.htm url reject
+^https?:\/\/m\.client\.10010\.com\/clientIndex\/api\/v1\/index\/queryIndexExclusiveOffers url reject
+^https?:\/\/img\.client\.10010\.com\/homejingxuan12\/js\/(pubuliu|1homeView) url reject
 
 [Script]
-# 热搜词
-http-response ^https?:\/\/m\.client\.10010\.com\/search_service\/search\/searchScrollWord script-path=data:application/javascript,var obj=JSON.parse($response.body);if(obj["113000004"])obj["113000004"]=[];$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_热搜词
-# 首页底部ICON
-http-response ^https?:\/\/m\.client\.10010\.com\/clientIndex\/homefusion\/fuInter script-path=data:application/javascript,var obj=JSON.parse($response.body);if(obj["HomeFusion.backGroundQuery"])delete obj["HomeFusion.backGroundQuery"];if(obj["HomeFusion.bottomLabel"])delete obj["HomeFusion.bottomLabel"].bottomMallKey;$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_首页底部ICON
-# 借钱
-http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myWallet script-path=data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_借钱
-# 积分
-http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myPoints script-path=data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_积分
-# 彩铃
-http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myColorfulRingtone script-path=data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_彩铃
-# 横幅
-http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/newUserInfo script-path=data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_横幅
-# 本地图片推广
-http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/getDeviceInfo script-path=data:application/javascript,var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});,requires-body=true,tag=联通_本地图片推广
+http-response ^https?:\/\/m\.client\.10010\.com\/search_service\/search\/searchScrollWord script-content=var obj=JSON.parse($response.body);if(obj["113000004"])obj["113000004"]=[];$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_热搜词
+http-response ^https?:\/\/m\.client\.10010\.com\/clientIndex\/homefusion\/fuInter script-content=var obj=JSON.parse($response.body);if(obj["HomeFusion.backGroundQuery"])delete obj["HomeFusion.backGroundQuery"];if(obj["HomeFusion.bottomLabel"])delete obj["HomeFusion.bottomLabel"].bottomMallKey;$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_首页底部ICON
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myWallet script-content=var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_借钱
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myPoints script-content=var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_积分
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myColorfulRingtone script-content=var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_彩铃
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/newUserInfo script-content=var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_横幅
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/getDeviceInfo script-content=var obj=JSON.parse($response.body);obj.data={};$done({body:JSON.stringify(obj)});, requires-body=true, tag=联通_本地图片推广
 
 [MITM]
-hostname = m.client.10010.com, img.client.10010.com
+hostname = %APPEND% m.client.10010.com, img.client.10010.com
