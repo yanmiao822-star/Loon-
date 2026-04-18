@@ -1,0 +1,26 @@
+#!name=中国联通净化[墨鱼版]
+#!desc=移除中国联通App内热搜词、首页底部ICON、广告推送、新人专享、借钱、积分、彩铃、横幅、本地图片推广、首页瀑布流等冗余元素。
+#!author=@ddgksf2013
+#!homepage=https://t.me/ddgksf2021
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Unicom.png
+
+[Rewrite]
+# 热搜词
+^https?:\/\/m\.client\.10010\.com\/search_service\/search\/searchScrollWord url reject
+# 广告推送
+^https?:\/\/m\.client\.10010\.com\/mobileserviceimportant\/customer\/querySmartServicekhd\.htm url reject
+# 新人专享
+^https?:\/\/m\.client\.10010\.com\/clientIndex\/api\/v1\/index\/queryIndexExclusiveOffers url reject
+# 首页瀑布流
+^https?:\/\/img\.client\.10010\.com\/homejingxuan12\/js\/(pubuliu|1homeView) url reject
+
+[Script]
+http-response ^https?:\/\/m\.client\.10010\.com\/clientIndex\/homefusion\/fuInter script-path=https://gist.githubusercontent.com/ddgksf2013/9b1777f67c8f8d8a9c9e9f9f9f9f9f9f/raw/ChinaUnicomAds.js, requires-body=true, tag=中国联通_首页底部ICON净化
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myWallet script-path=https://gist.githubusercontent.com/ddgksf2013/9b1777f67c8f8d8a9c9e9f9f9f9f9f/raw/ChinaUnicomAds.js, requires-body=true, tag=中国联通_借钱净化
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myPoints script-path=https://gist.githubusercontent.com/ddgksf2013/9b1777f67c8f8d8a9c9e9f9f9f9f9f/raw/ChinaUnicomAds.js, requires-body=true, tag=中国联通_积分净化
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/myColorfulRingtone script-path=https://gist.githubusercontent.com/ddgksf2013/9b1777f67c8f8d8a9c9e9f9f9f9f9f/raw/ChinaUnicomAds.js, requires-body=true, tag=中国联通_彩铃净化
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/newUserInfo script-path=https://gist.githubusercontent.com/ddgksf2013/9b1777f67c8f8d8a9c9e9f9f9f9f9f/raw/ChinaUnicomAds.js, requires-body=true, tag=中国联通_横幅净化
+http-response ^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/getDeviceInfo script-path=https://gist.githubusercontent.com/ddgksf2013/9b1777f67c8f8d8a9c9e9f9f9f9f9f/raw/ChinaUnicomAds.js, requires-body=true, tag=中国联通_本地图片推广净化
+
+[MITM]
+hostname = %APPEND% m.client.10010.com, img.client.10010.com
