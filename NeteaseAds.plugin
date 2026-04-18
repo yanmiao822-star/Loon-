@@ -1,6 +1,6 @@
 #!name=网易云音乐净化
 #!desc=净化网易云音乐【墨鱼版】，包括底部Tab、发现页、搜索页、广告推广、侧边栏等区域。
-#!author=@ddgksf2013，@Overtrees修改整理
+#!author=@ddgksf2013，Overtrees修改整理
 #!homepage=https://t.me/ddgksf2021
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music.png
 #!tag=工具,yanmiao
@@ -10,13 +10,23 @@
 使用声明：⚠️此脚本仅供学习与交流，请在下载使用24小时内删除！请勿在中国大陆转载与贩卖！⚠️⚠️⚠️
 *******************************
 
+#!name=网易云音乐净化[墨鱼版]
+#!desc=净化网易云音乐，包括底部Tab、发现页、搜索页、广告推广、侧边栏等区域。
+#!author=@ddgksf2013
+#!homepage=https://t.me/ddgksf2021
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music.png
+
 [Rewrite]
+# 原接口广告拒绝
 ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/content\/activity\/music\/jar\/template\/list url reject
 ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/sp\/flow\/popup\/query url reject
 ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipmall\/couponcfg\/get url reject
 ^https?:\/\/interface(\d)?\.music\.163\.com\/w?eapi\/(resource-exposure\/)?activity url reject
 ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/comment\/feed\/inserted\/resources url reject
 ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/resource-exposure\/config url reject
+# 图片广告域名拒绝
+^https?://iadmusicmat\.music\.126\.net/.* url reject
+^https?://.*\.126\.net/.*\.(jpg|jpeg|png|gif|webp) url reject
 
 [Script]
 http-response ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/home\/framework\/tab script-path=https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js, requires-body=true, tag=网易云音乐_底部Tab净化
