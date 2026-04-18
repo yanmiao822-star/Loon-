@@ -17,17 +17,17 @@
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music.png
 
 [Rewrite]
-^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/content\/activity\/music\/jar\/template\/list url reject
-^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/sp\/flow\/popup\/query url reject
-^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipmall\/couponcfg\/get url reject
-^https?:\/\/interface(\d)?\.music\.163\.com\/w?eapi\/(resource-exposure\/)?activity url reject
-^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/comment\/feed\/inserted\/resources url reject
-^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/resource-exposure\/config url reject
-^https?://iadmusicmat\.music\.126\.net/.* url reject
-^https?://.*\.126\.net/.*\.(jpg|jpeg|png|gif|webp) url reject
+# > 拦截活动推广、优惠券等
+^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/content\/activity\/music\/jar\/template\/list url reject-200
+^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/sp\/flow\/popup\/query url reject-200
+^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipmall\/couponcfg\/get url reject-200
+^https?:\/\/interface(\d)?\.music\.163\.com\/w?eapi\/(resource-exposure\/)?activity url reject-200
+^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/comment\/feed\/inserted\/resources url reject-200
+^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/resource-exposure\/config url reject-200
 
 [Script]
+# > 网易云音乐净化通用处理脚本
 http-response ^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/(link\/(home\/framework\/tab|page\/(discovery|rcmd)\/resource\/show)|ios\/upgrade\/get|search\/(default\/keyword\/list|rcmd\/keyword\/get|chart\/(list|detail)|suggest\/keyword\/get|specialkeyword\/get)|ad\/(loading\/(get|current)|get)|link\/(position|scene)\/show\/resource|vip\/cashier\/tspopup\/get|vipnewcenter\/app\/resource\/newaccountpage|side-bar\/mini-program\/music-service\/account|delivery\/(batch-)?deliver|yunbei\/account\/entrance\/get|creator\/musician\/reminder\/message\/get|batch) script-path=https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js, requires-body=true, tag=网易云音乐净化
 
 [MITM]
-hostname = %APPEND% *.music.163.com, *.126.net, *.netease.com
+hostname = %APPEND% interface*.music.163.com
